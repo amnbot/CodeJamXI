@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 import { authentication, app } from "./firebase-config";
 import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { FirebaseError } from "firebase/app";
+
+import SceneCreator from "./components/scenes/SceneCreator";
 
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 const UserContext = React.createContext(authentication.currentUser);
-
-import SceneCreator from "./components/scenes/SceneCreator";
 
 function App() {
   // Check if user is logged in upon mounting component
@@ -101,11 +100,8 @@ function App() {
       <div>
         <h1>LOGGED IN AS: {user.name}</h1>
       </div>
-      <SceneCreator/>
+      <SceneCreator />
     </UserContext.Provider>
-    
-        
-    
   );
 }
 
