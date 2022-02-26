@@ -37,15 +37,19 @@ export default function Home() {
 
       scenes.push({ id: doc.id, ...doc.data() });
     });
-
+    const trueTags = storyTags.filter((el) => {
+      return el.value === true;
+    });
+    console.log(trueTags);
     const q2 = query(
       collection(db, "scenes"),
-      where("tags", "array-contains-any", storyTags)
+      where("tags", "array-contains-any", trueTags)
     );
 
     const querySnapshot2 = await getDocs(q2);
 
     querySnapshot2.forEach((doc) => {
+      console.log(doc.data());
       if (!scenes.includes({ id: doc.id, ...doc.data() })) {
         scenes.push({ id: doc.id, ...doc.data() });
       }
