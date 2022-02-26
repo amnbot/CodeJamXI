@@ -5,11 +5,12 @@ export default function Scene() {
   let { id } = useParams();
   let location = useLocation();
   const { scene } = location.state;
-  console.log(id, scene);
 
   return (
-    <div>
-      <h3>{id}</h3>
+    <div className="flex flex-col justify-center items-center my-[10%]">
+      <h1 className="text-4xl tracking-wider my-10">{scene.title.join(" ")}</h1>
+      <p>{scene.text}</p>
+      <p></p>
     </div>
   );
 }

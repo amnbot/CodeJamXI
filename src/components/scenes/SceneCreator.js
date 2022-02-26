@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { UserContext } from "../../App";
+import { tags, sceneConstructor } from "../../constants/constants";
 
 export default function SceneCreator() {
   const user = useContext(UserContext);
-  console.log(user);
+  // console.log(user);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [chars, setChars] = useState(0);
@@ -32,13 +33,14 @@ export default function SceneCreator() {
       alert("Scene must have a title");
       return;
     }
-    const titleWords = title.split(" ");
+    const titleWords = title.toLowerCase().split(" ");
     //console.log({title: title, text:text})
     submitScene({
       title: titleWords,
       text: text,
       creatorId: user.id,
       creatorName: user.name,
+      ...sceneConstructor,
     });
     setTitle("");
     setText("");
