@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 
 export default function Scene() {
   let { id } = useParams();
@@ -14,9 +14,14 @@ export default function Scene() {
         </h1>
         <p>{scene.text}</p>
       </section>
-      <button className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5">
-        CONTINUE STORY
-      </button>
+      <section className="flex my-[2%] flex-col items-center justify-center">
+        <h1>Branches: {scene.children.length}</h1>
+        <div className="bg-green-600 p-2 rounded-lg text-white my-2">
+          <Link to="/branch/create" state={{ scene: scene }}>
+            MAKE YOUR OWN BRANCH
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
