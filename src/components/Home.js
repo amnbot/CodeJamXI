@@ -10,21 +10,19 @@ export default function Home() {
   const [sceneList, setSceneList] = useState([]);
   const [search, setSearch] = useState("");
 
+  const onCheckChange = (e) => {
+    //console.log(e.target)
 
-  const onCheckChange = (e) =>{
-    console.log(e.target)
-    
     const temp = [...storyTags];
 
     for (let i = 0; i < temp.length; i++) {
-      
-      if(temp[i].tag == e.target.id){
+      if (temp[i].tag == e.target.id) {
         temp[i].value = Boolean(e.target.checked);
       }
     }
     setStoryTags(temp);
     //console.log(storyTags);
-  }
+  };
 
   const filterSearch = async () => {
     let scenes = [];
@@ -40,8 +38,6 @@ export default function Home() {
       scenes.push({ id: doc.id, ...doc.data() });
     });
 
-    
-
     const q2 = query(
       collection(db, "scenes"),
       where("tags", "array-contains-any", storyTags)
@@ -50,13 +46,12 @@ export default function Home() {
     const querySnapshot2 = await getDocs(q2);
 
     querySnapshot2.forEach((doc) => {
-      if(!scenes.includes({ id: doc.id, ...doc.data() })){
+      if (!scenes.includes({ id: doc.id, ...doc.data() })) {
         scenes.push({ id: doc.id, ...doc.data() });
       }
-    })
+    });
     setSceneList(scenes);
   };
-  
 
   const handleInput = (e) => {
     setSearch(e.target.value);
@@ -67,11 +62,13 @@ export default function Home() {
       <div className="my-2.5">
         <ul>
           {sceneList.map((scene) => (
-            <li>
-              <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
-                {scene.title.join(" ")}
-              </Link>
-            </li>
+            <div key={scene.id}>
+              <li>
+                <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
+                  {scene.title.join(" ")}
+                </Link>
+              </li>
+            </div>
           ))}
         </ul>
       </div>
@@ -87,20 +84,34 @@ export default function Home() {
       <input
         onChange={handleInput}
         placeholder="Search by name or tag..."
-        maxLength="100" 
+        maxLength="100"
         className="m-auto mt-2.5 mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
       />
       <div className="flex flex-row justify-center ">
         <ul>
-          {storyTags.map((tag) => ( 
-            <li>
-              <input className="text-black" type="checkbox" id={tag.tag} onChange={onCheckChange} value={tag.value}/>{tag.tag}
-            </li>
+          {storyTags.map((tag) => (
+            <div key={tag.tag}>
+              <li>
+                <input
+                  className="text-black"
+                  type="checkbox"
+                  id={tag.tag}
+                  onChange={onCheckChange}
+                  value={tag.value}
+                />
+                {tag.tag}
+              </li>
+            </div>
           ))}
         </ul>
-        </div>
+      </div>
 
-      <button className="flex mb-2.5 bg-green-600 rounded-lg w-1/5 text-white justify-center" onClick={filterSearch}>Search</button>
+      <button
+        className="flex mb-2.5 bg-green-600 rounded-lg w-1/5 text-white justify-center"
+        onClick={filterSearch}
+      >
+        Search
+      </button>
       <div>{sceneList.length > 0 ? displayScenes() : null}</div>
     </div>
   );

@@ -17,7 +17,7 @@ export default function Scene() {
       <section className="flex my-[2%] flex-col items-center justify-center">
         <h1>Branches: {scene.children.length}</h1>
         <div className="bg-green-600 p-2 rounded-lg text-white my-2">
-          <Link to="/branch/create" state={{ scene: scene }}>
+          <Link to="/branch/create" state={{ parent: scene }}>
             MAKE YOUR OWN BRANCH
           </Link>
         </div>

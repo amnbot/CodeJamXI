@@ -1,31 +1,42 @@
 import React, { useState, useEffect, useContext } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { UserContext } from "../../App";
 import { tags, sceneConstructor } from "../../constants/constants";
 
-export default function SceneCreator() {
+export default function SceneCreator({ isChild, parent }) {
   const user = useContext(UserContext);
   // console.log(user);
-  const[storyTags, setStoryTags] = useState(tags);
+  const [storyTags, setStoryTags] = useState(tags);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [chars, setChars] = useState(0);
 
-  const onCheckChange = (e) =>{
+  useEffect(() => {
+    if (isChild) {
+      setStoryTags(parent.tags);
+    }
+  }, []);
+
+  const onCheckChange = (e) => {
     //console.log(e.target)
-    
+
     const temp = [...storyTags];
 
     for (let i = 0; i < temp.length; i++) {
-      
-      if(temp[i].tag == e.target.id){
+      if (temp[i].tag == e.target.id) {
         temp[i].value = Boolean(e.target.checked);
       }
     }
     setStoryTags(temp);
     //console.log(storyTags);
-  }
+  };
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -52,22 +63,33 @@ export default function SceneCreator() {
     }
     const titleWords = title.toLowerCase().split(" ");
     //console.log({title: title, text:text})
-    const toSumbit = {
+    const toSubmit = {
       ...sceneConstructor,
       title: titleWords,
       text,
       creatorId: user.id,
       creatorName: user.name,
       tags: storyTags,
+      parents: isChild ? parent.parents + " " + parent.id : "",
     };
-    submitScene(toSumbit);
+
+    submitScene(toSubmit);
     setTitle("");
     setText("");
   };
 
-  const submitScene = (scene) => {
+  const submitScene = async (scene) => {
     console.log(scene);
-    addDoc(collection(db, "scenes"), scene);
+    const docRef = await addDoc(collection(db, "scenes"), scene);
+    if (isChild) {
+      setDoc(
+        doc(db, "scenes", parent.id),
+        {
+          children: arrayUnion(docRef.id),
+        },
+        { merge: true }
+      );
+    }
   };
 
   return (
@@ -98,15 +120,25 @@ export default function SceneCreator() {
         <h1 className="flex m-auto mb-2.5">{chars}/500 characters</h1>
       </div>
 
-        <div className="flex flex-row justify-center ">
+      <div className="flex flex-row justify-center ">
         <ul>
-          {storyTags.map((tag) => ( 
-            <li>
-              <input className="text-black" type="checkbox" onChange={onCheckChange} id={tag.tag} value={tag.value}/>{tag.tag}
-            </li>
+          {storyTags.map((tag) => (
+            <div key={tag.tag}>
+              <li>
+                <input
+                  className="text-black"
+                  type="checkbox"
+                  onChange={onCheckChange}
+                  id={tag.tag}
+                  value={tag.value}
+                  checked={tag.value}
+                />
+                {tag.tag}
+              </li>
+            </div>
           ))}
         </ul>
-        </div>
+      </div>
       <div className="flex m-auto items-center">
         <button
           onClick={submit}
