@@ -1,4 +1,7 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react';
+import {collection,addDoc} from 'firebase/firestore';
+import { db } from '../../firebase-config';
+
 export default function SceneCreator() {
     
     const [title,setTitle] = useState("")
@@ -28,12 +31,15 @@ export default function SceneCreator() {
             return;
         }
         
-        console.log({scene: title, text:text})
+        //console.log({title: title, text:text})
         setTitle("");
         setText("");
-        return {scene: title, text:text}
+        submitScene({title: title, text:text});
     }
 
+    const submitScene = (scene) =>{
+        addDoc(collection(db,"scenes"), scene);
+    }
 
   return (
     <div className="flex-col content-center mt-3.5">
