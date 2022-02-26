@@ -5,6 +5,7 @@ import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 import SceneCreator from "./components/scenes/SceneCreator";
+import Navbar from "./components/scenes/NavBar";
 
 const provider = new GoogleAuthProvider();
 
@@ -115,15 +116,18 @@ function App() {
   return (
     <UserContext.Provider value={user}>
       <div>
-        <h1>Logged in as: {user.name}</h1>
+        <Navbar />
+        <div>
+          <h1>Logged in as: {user.name}</h1>
+        </div>
+        <SceneCreator user={user} />
+        <button
+          className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
+          onClick={handleSignOut}
+        >
+          LOG OUT
+        </button>
       </div>
-      <SceneCreator user={user} />
-      <button
-        className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
-        onClick={handleSignOut}
-      >
-        LOG OUT
-      </button>
     </UserContext.Provider>
   );
 }
