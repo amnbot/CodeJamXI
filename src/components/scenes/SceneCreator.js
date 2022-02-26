@@ -24,6 +24,7 @@ export default function SceneCreator() {
     const submit = (e) =>{
         if(text.length < 50){
             alert("Text must have at least 50 characters")
+            return;
         }
 
         if(title.length == 0){
