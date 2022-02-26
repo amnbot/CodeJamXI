@@ -8,9 +8,17 @@ export default function Scene() {
 
   return (
     <div className="flex flex-col justify-center items-center my-[10%]">
-      <h1 className="text-4xl tracking-wider my-10">{scene.title.join(" ")}</h1>
-      <p>{scene.text}</p>
-      <p></p>
+      <section>
+        <h1 className="text-4xl tracking-wider my-10">
+          {scene.title.join(" ").toUppercase()}
+        </h1>
+        <p>{scene.text}</p>
+      </section>
+      <section>
+        <ul>
+          <h1>LOL</h1>
+        </ul>
+      </section>
     </div>
   );
 }
