@@ -7,9 +7,26 @@ import { tags, sceneConstructor } from "../../constants/constants";
 export default function SceneCreator() {
   const user = useContext(UserContext);
   // console.log(user);
+  const[storyTags, setStoryTags] = useState(tags);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [chars, setChars] = useState(0);
+
+  const onCheckChange = (e) =>{
+    console.log(e.target)
+    
+    const temp = [...storyTags];
+
+    for (let i = 0; i < temp.length; i++) {
+      
+      if(temp[i].tag == e.target.id){
+        temp[i].value = Boolean(e.target.checked);
+      }
+    }
+    setStoryTags(temp);
+    //console.log(storyTags);
+  }
+
   const handleTextChange = (e) => {
     setText(e.target.value);
     //console.log(text)
@@ -41,7 +58,7 @@ export default function SceneCreator() {
       text,
       creatorId: user.id,
       creatorName: user.name,
-      tags,
+      tags: storyTags,
     };
     submitScene(toSumbit);
     setTitle("");
@@ -81,6 +98,15 @@ export default function SceneCreator() {
         <h1 className="flex m-auto mb-2.5">{chars}/500 characters</h1>
       </div>
 
+        <div className="flex flex-row justify-center ">
+        <ul>
+          {storyTags.map((tag) => ( 
+            <li>
+              <input className="text-black" type="checkbox" onChange={onCheckChange} id={tag.tag} value={tag.value}/>{tag.tag}
+            </li>
+          ))}
+        </ul>
+        </div>
       <div className="flex m-auto items-center">
         <button
           onClick={submit}
