@@ -1,35 +1,35 @@
 export const tags = [
   {
     tag: "romance",
-    value: "false",
+    value: false,
   },
   {
     tag: "drama",
-    value: "false",
+    value: false,
   },
   {
     tag: "mystery",
-    value: "false",
+    value: false,
   },
   {
     tag: "comedy",
-    value: "false",
+    value: false,
   },
   {
     tag: "horror",
-    value: "false",
+    value: false,
   },
   {
     tag: "fantasy",
-    value: "false",
+    value: false,
   },
   {
     tag: "adventure",
-    value: "false",
+    value: false,
   },
   {
     tag: "science-fiction",
-    value: "false",
+    value: false,
   },
 ];
 
