@@ -12,7 +12,7 @@ export default function Home() {
     let scenes = [];
     const q = query(
       collection(db, "scenes"),
-      where("title", "array-contains-any", search.split(" "))
+      where("title", "array-contains-any", search.toLowerCase().split(" "))
     );
     const querySnapshot = await getDocs(q);
 
@@ -31,12 +31,12 @@ export default function Home() {
 
   const displayScenes = () => {
     return (
-      <div>
+      <div className="my-2.5">
         <ul>
           {sceneList.map((scene) => (
             <li>
               <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
-                {scene.id}
+                {scene.title.join(" ")}
               </Link>
             </li>
           ))}
@@ -46,15 +46,19 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
+      <h1 className="flex m-auto text-4xl justify-center mt-2.5">
+        Browse Scenes
+      </h1>
+
       <input
         onChange={handleInput}
         placeholder="Scene Title"
-        maxLength="100"
-        className="m-auto mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
+        maxLength="100" 
+        className="m-auto mt-2.5 mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
       />
 
-      <button onClick={filterSearch}>Search</button>
+      <button className="flex mb-2.5 bg-green-600 rounded-lg w-1/5 text-white justify-center" onClick={filterSearch}>Search</button>
       <div>{sceneList.length > 0 ? displayScenes() : null}</div>
     </div>
   );
