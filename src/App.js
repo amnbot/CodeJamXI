@@ -82,6 +82,8 @@ function App() {
     signOut(authentication)
       .then(() => {
         // Sign-out successful.
+        setUser(null);
+        setLoggedIn(false);
       })
       .catch((error) => {
         // An error happened.
@@ -97,8 +99,13 @@ function App() {
   if (!loggedIn) {
     return (
       <div className="flex justify-center items-center flex-col my-[20%]">
-        <h1 className="text-2xl font-bold font-mono">Please log in to continue</h1>
-        <button className="flex font-mono font-bold m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/3 mt-1.5" onClick={handleSignIn}>
+        <h1 className="text-2xl font-bold font-mono">
+          Please log in to continue
+        </h1>
+        <button
+          className="flex font-mono font-bold m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/3 mt-1.5"
+          onClick={handleSignIn}
+        >
           LOG IN
         </button>
       </div>
@@ -111,6 +118,12 @@ function App() {
         <h1>Logged in as: {user.name}</h1>
       </div>
       <SceneCreator />
+      <button
+        className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
+        onClick={handleSignOut}
+      >
+        LOG OUT
+      </button>
     </UserContext.Provider>
   );
 }
