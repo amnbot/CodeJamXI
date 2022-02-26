@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "../Home";
 import About from "./About";
 import SceneCreator from "./SceneCreator";
+import Scene from "./Scene";
 
 export default function Navbar() {
   return (
@@ -29,6 +30,7 @@ export default function Navbar() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/create" element={<SceneCreator />} />
+        <Route path="/scene/:id" element={<Scene/>}/>
       </Routes>
     </BrowserRouter>
   );
