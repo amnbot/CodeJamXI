@@ -35,18 +35,21 @@ export default function SceneCreator() {
     }
     const titleWords = title.toLowerCase().split(" ");
     //console.log({title: title, text:text})
-    submitScene({
+    const toSumbit = {
+      ...sceneConstructor,
       title: titleWords,
-      text: text,
+      text,
       creatorId: user.id,
       creatorName: user.name,
-      ...sceneConstructor,
-    });
+      tags,
+    };
+    submitScene(toSumbit);
     setTitle("");
     setText("");
   };
 
   const submitScene = (scene) => {
+    console.log(scene);
     addDoc(collection(db, "scenes"), scene);
   };
 
