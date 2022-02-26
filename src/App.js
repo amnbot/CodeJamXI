@@ -96,9 +96,9 @@ function App() {
 
   if (!loggedIn) {
     return (
-      <div className="flex justify-center items-center flex-col my-[50%]">
-        <h1>NOT LOGGED IN</h1>
-        <button className="w-1/3 bg-slate-600" onClick={handleSignIn}>
+      <div className="flex justify-center items-center flex-col my-[20%]">
+        <h1 className="text-2xl font-bold font-mono">Please log in to continue</h1>
+        <button className="flex font-mono font-bold m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/3 mt-1.5" onClick={handleSignIn}>
           LOG IN
         </button>
       </div>
@@ -108,7 +108,7 @@ function App() {
   return (
     <UserContext.Provider value={user}>
       <div>
-        <h1>LOGGED IN AS: {user.name}</h1>
+        <h1>Logged in as: {user.name}</h1>
       </div>
       <SceneCreator />
     </UserContext.Provider>
