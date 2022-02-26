@@ -24,7 +24,7 @@ export default function SceneCreator() {
       }
     }
     setStoryTags(temp);
-    console.log(storyTags);
+    //console.log(storyTags);
   }
 
   const handleTextChange = (e) => {
