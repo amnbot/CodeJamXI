@@ -1,12 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { authentication, app } from "./firebase-config";
+import { authentication, app, db } from "./firebase-config";
 import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import SceneCreator from "./components/scenes/SceneCreator";
 
-const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 const UserContext = React.createContext(authentication.currentUser);
@@ -23,8 +22,8 @@ function App() {
   const checkIfLoggedIn = () => {
     authentication.onAuthStateChanged(function (user) {
       if (user) {
-        setLoggedIn(false);
-      } else setLoggedIn(true);
+        setLoggedIn(true);
+      } else setLoggedIn(false);
     });
   };
 
