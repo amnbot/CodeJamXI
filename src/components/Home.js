@@ -40,20 +40,21 @@ export default function Home() {
     const trueTags = storyTags.filter((el) => {
       return el.value === true;
     });
-    console.log(trueTags);
-    const q2 = query(
-      collection(db, "scenes"),
-      where("tags", "array-contains-any", trueTags)
-    );
 
-    const querySnapshot2 = await getDocs(q2);
+    if (trueTags.length > 0) {
+      const q2 = query(
+        collection(db, "scenes"),
+        where("tags", "array-contains-any", trueTags)
+      );
 
-    querySnapshot2.forEach((doc) => {
-      console.log(doc.data());
-      if (!scenes.includes({ id: doc.id, ...doc.data() })) {
-        scenes.push({ id: doc.id, ...doc.data() });
-      }
-    });
+      const querySnapshot2 = await getDocs(q2);
+
+      querySnapshot2.forEach((doc) => {
+        if (!scenes.includes({ id: doc.id, ...doc.data() })) {
+          scenes.push({ id: doc.id, ...doc.data() });
+        }
+      });
+    }
     setSceneList(scenes);
   };
 
@@ -80,10 +81,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="flex m-auto text-4xl justify-center mt-2.5">
-        Browse Scenes
-      </h1>
+    <div className="flex flex-col items-center justify-center mt-[2%]">
+      <h1 className="flex text-4xl mt-2.5">Browse Scenes</h1>
 
       <input
         onChange={handleInput}
@@ -91,13 +90,13 @@ export default function Home() {
         maxLength="100"
         className="m-auto mt-2.5 mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
       />
-      <div className="flex flex-row justify-center ">
+      <div className="flex justify-center text-center items-center">
         <ul>
           {storyTags.map((tag) => (
-            <div key={tag.tag}>
+            <div className="inline-flex mx-3" key={tag.tag}>
               <li>
                 <input
-                  className="text-black"
+                  className="text-black mx-2"
                   type="checkbox"
                   id={tag.tag}
                   onChange={onCheckChange}

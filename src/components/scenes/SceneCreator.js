@@ -93,59 +93,61 @@ export default function SceneCreator({ isChild, parent }) {
   };
 
   return (
-    <div className="flex-col content-center mt-3.5">
-      <h1 className="flex m-auto text-4xl justify-center mb-2.5">
-        Write a new scene
-      </h1>
-      <div className="m-auto">
-        <input
-          value={title}
-          onChange={handleTitleChange}
-          placeholder="Scene Title"
-          maxLength="100"
-          className="m-auto mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
-        />
-      </div>
+    <div className="flex justify-center m-auto items-center text-center">
+      <div className="flex flex-col m-auto items-center">
+        <h1 className=" text-2xl sm:text-4xl mb-5 uppercase tracking-widest font-bold">
+          Write a new scene
+        </h1>
+        <div className="flex flex-col space-y-6 w-[90%] sm:w-[100%] text-center justify-center items-center bg-green-600 p-10 rounded-[20px]">
+          <input
+            value={title}
+            onChange={handleTitleChange}
+            placeholder="Scene Title"
+            maxLength="100"
+            className="w-[115%] sm:w-[100%] mb-2.5px-3 py-4 text-black bg-white rounded-lg border-0 shadow"
+          />
 
-      <textarea
-        value={text}
-        onChange={handleTextChange}
-        maxLength="500"
-        className="mb-2.5 m-auto border-black px-3 py-4  flex text-black bg-white rounded text-base border-0 shadow w-1/2"
-        rows="3"
-        placeholder={"Your text..."}
-      />
+          <textarea
+            value={text}
+            onChange={handleTextChange}
+            maxLength="500"
+            className="w-[115%] sm:w-[100%] mb-2.5 px-3 py-4text-black bg-white rounded-lg border-0 shadow "
+            rows="3"
+            placeholder={"Your text..."}
+          />
 
-      <div className="m-auto flex content-center">
-        <h1 className="flex m-auto mb-2.5">{chars}/500 characters</h1>
-      </div>
+          <div className="">
+            <h1 className="mb-2.5">{chars}/500 characters</h1>
+          </div>
 
-      <div className="flex flex-row justify-center ">
-        <ul>
-          {storyTags.map((tag) => (
-            <div key={tag.tag}>
-              <li>
-                <input
-                  className="text-black"
-                  type="checkbox"
-                  onChange={onCheckChange}
-                  id={tag.tag}
-                  value={tag.value}
-                  checked={tag.value}
-                />
-                {tag.tag}
-              </li>
-            </div>
-          ))}
-        </ul>
-      </div>
-      <div className="flex m-auto items-center">
-        <button
-          onClick={submit}
-          className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
-        >
-          Submit
-        </button>
+          <div className="text-center items-center ">
+            <ul>
+              {storyTags.map((tag) => (
+                <div className="inline-flex mx-3" key={tag.tag}>
+                  <li>
+                    <input
+                      className="text-black mx-2"
+                      type="checkbox"
+                      onChange={onCheckChange}
+                      id={tag.tag}
+                      value={tag.value}
+                      checked={tag.value}
+                    />
+                    {tag.tag}
+                  </li>
+                </div>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="">
+          <button
+            onClick={submit}
+            className="bg-green-600 text-white px-10 py-2 my-10 rounded-xl"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

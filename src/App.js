@@ -115,7 +115,9 @@ function App() {
   //console.log(user);
   return (
     <UserContext.Provider value={user}>
-      <Navbar />
+      <div className="flex flex-col h-screen items-center font-[Montserrat]">
+        <Navbar />
+      </div>
       <footer>
         <div className="fixed flex m-auto mx-10 gap-3 justify-center items-center bottom-10 text-center">
           <div>
