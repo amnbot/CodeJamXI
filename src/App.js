@@ -63,8 +63,8 @@ function App() {
           photoUrl: userResult.photoURL,
           id: userResult.uid,
         });
-        console.log(user);
-        console.log(loggedIn);
+        //console.log(user);
+        //console.log(loggedIn);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -112,7 +112,7 @@ function App() {
       </div>
     );
   }
-  console.log(user);
+  //console.log(user);
   return (
     <UserContext.Provider value={user}>
       <Navbar />

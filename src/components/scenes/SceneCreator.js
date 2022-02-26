@@ -3,7 +3,9 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { UserContext } from "../../App";
 
-export default function SceneCreator({ user }) {
+export default function SceneCreator() {
+  const user = useContext(UserContext);
+  console.log(user);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [chars, setChars] = useState(0);
@@ -30,16 +32,16 @@ export default function SceneCreator({ user }) {
       alert("Scene must have a title");
       return;
     }
-
+    const titleWords = title.split(" ");
     //console.log({title: title, text:text})
-    setTitle("");
-    setText("");
     submitScene({
-      title: title,
+      title: titleWords,
       text: text,
       creatorId: user.id,
       creatorName: user.name,
     });
+    setTitle("");
+    setText("");
   };
 
   const submitScene = (scene) => {
