@@ -8,7 +8,7 @@ import SceneCreator from "./components/scenes/SceneCreator";
 
 const provider = new GoogleAuthProvider();
 
-const UserContext = React.createContext(authentication.currentUser);
+export const UserContext = React.createContext(authentication.currentUser);
 
 function App() {
   // Check if user is logged in upon mounting component
@@ -111,13 +111,13 @@ function App() {
       </div>
     );
   }
-
+  console.log(user);
   return (
     <UserContext.Provider value={user}>
       <div>
         <h1>Logged in as: {user.name}</h1>
       </div>
-      <SceneCreator />
+      <SceneCreator user={user} />
       <button
         className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
         onClick={handleSignOut}
