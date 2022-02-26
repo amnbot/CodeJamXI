@@ -10,15 +10,13 @@ export default function Scene() {
     <div className="flex flex-col justify-center items-center my-[10%]">
       <section>
         <h1 className="text-4xl tracking-wider my-10">
-          {scene.title.join(" ").toUppercase()}
+          {scene.title.join(" ")}
         </h1>
         <p>{scene.text}</p>
       </section>
-      <section>
-        <ul>
-          <h1>LOL</h1>
-        </ul>
-      </section>
+      <button className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5">
+        CONTINUE STORY
+      </button>
     </div>
   );
 }

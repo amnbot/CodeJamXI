@@ -39,7 +39,7 @@ export const sceneConstructor = {
   creatorId: "",
   creatorName: "",
   parents: "",
-  children: "",
+  children: [],
   tags: [],
   comments: [],
   likes: 0,
