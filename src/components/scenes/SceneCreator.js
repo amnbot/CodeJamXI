@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react'
-
 export default function SceneCreator() {
     
     const [title,setTitle] = useState("")
