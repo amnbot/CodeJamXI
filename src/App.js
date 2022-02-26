@@ -115,19 +115,21 @@ function App() {
   console.log(user);
   return (
     <UserContext.Provider value={user}>
-      <div>
-        <Navbar />
-        <div>
-          <h1>Logged in as: {user.name}</h1>
+      <Navbar />
+      <footer>
+        <div className="fixed flex m-auto mx-10 gap-3 justify-center items-center bottom-10 text-center">
+          <div>
+            <h1>Logged in as: {user.name}</h1>
+          </div>
+
+          <button
+            className=" bg-red-600 text-white rounded-lg px-3"
+            onClick={handleSignOut}
+          >
+            LOG OUT
+          </button>
         </div>
-        <SceneCreator user={user} />
-        <button
-          className="flex m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/4 mt-1.5"
-          onClick={handleSignOut}
-        >
-          LOG OUT
-        </button>
-      </div>
+      </footer>
     </UserContext.Provider>
   );
 }

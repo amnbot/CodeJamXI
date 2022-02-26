@@ -1,24 +1,35 @@
 import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "../Home";
+import About from "./About";
+import SceneCreator from "./SceneCreator";
 
 export default function Navbar() {
   return (
-    <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-green-600 mb-3">
-        <div>
-          <a
-            class="transform text-white transition-transform hover:scale-110 mx-4 text-lg"
-            href="/create"
-          >
-            CREATE
-          </a>
-          <a
-            class="transform text-white transition-transform hover:scale-110 mx-4 text-lg"
-            href="/about"
-          >
-            ABOUT
-          </a>
-        </div>
-      </nav>
-    </>
+    <BrowserRouter>
+      <div className="flex inline justify-center w-full bg-green-600 text-white uppercase tracking-widest py-8">
+        <nav>
+          <ul className="flex inline gap-16 md:gap-44">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/create">Create</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/create" element={<SceneCreator />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
