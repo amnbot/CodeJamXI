@@ -1,24 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+import SceneCreator from "./components/scenes/SceneCreator";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className="text-3xl">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p className="text-xl">XGZGEG</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <SceneCreator/>
     </div>
   );
 }
