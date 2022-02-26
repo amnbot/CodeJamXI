@@ -10,6 +10,8 @@ const provider = new GoogleAuthProvider();
 
 const UserContext = React.createContext(authentication.currentUser);
 
+import SceneCreator from "./components/scenes/SceneCreator";
+
 function App() {
   // Check if user is logged in upon mounting component
   useEffect(() => {
@@ -99,7 +101,11 @@ function App() {
       <div>
         <h1>LOGGED IN AS: {user.name}</h1>
       </div>
+      <SceneCreator/>
     </UserContext.Provider>
+    
+        
+    
   );
 }
 
