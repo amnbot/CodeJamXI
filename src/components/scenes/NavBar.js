@@ -7,9 +7,15 @@ export default function Navbar() {
         <div>
           <a
             class="transform text-white transition-transform hover:scale-110 mx-4 text-lg"
-            href="/"
+            href="/create"
           >
             CREATE
+          </a>
+          <a
+            class="transform text-white transition-transform hover:scale-110 mx-4 text-lg"
+            href="/about"
+          >
+            ABOUT
           </a>
         </div>
       </nav>
