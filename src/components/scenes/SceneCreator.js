@@ -79,7 +79,7 @@ export default function SceneCreator({ isChild, parent }) {
   };
 
   const submitScene = async (scene) => {
-    console.log(scene);
+    // console.log(scene);
     const docRef = await addDoc(collection(db, "scenes"), scene);
     if (isChild) {
       setDoc(

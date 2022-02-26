@@ -5,7 +5,7 @@ import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 import SceneCreator from "./components/scenes/SceneCreator";
-import Navbar from "./components/scenes/NavBar";
+import Navbar from "./components/NavBar";
 
 const provider = new GoogleAuthProvider();
 

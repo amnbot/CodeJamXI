@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from "../Home";
+import Home from "./Home";
 import About from "./About";
-import SceneCreator from "./SceneCreator";
-import BranchCreator from "./BranchCreator";
-import Scene from "./Scene";
+import SceneCreator from "./scenes/SceneCreator";
+import BranchCreator from "./scenes/BranchCreator";
+import Scene from "./scenes/Scene";
 
 export default function Navbar() {
   return (
