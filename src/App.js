@@ -18,16 +18,24 @@ function App() {
 
   // User logged in sate
   const [loggedIn, setLoggedIn] = useState(false);
+  // User state
+  const [user, setUser] = useState(null);
 
   const checkIfLoggedIn = () => {
     authentication.onAuthStateChanged(function (user) {
       if (user) {
+        setUser({
+          name: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL,
+          id: user.uid,
+        });
         setLoggedIn(true);
       } else setLoggedIn(false);
     });
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     signInWithPopup(authentication, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -54,7 +62,7 @@ function App() {
           photoUrl: userResult.photoURL,
           id: userResult.uid,
         });
-        setLoggedIn(true);
+        console.log(user);
         console.log(loggedIn);
       })
       .catch((error) => {
@@ -80,8 +88,11 @@ function App() {
       });
   };
 
-  // User state
-  const [user, setUser] = useState(authentication.currentUser);
+  useEffect(() => {
+    if (user) {
+      setLoggedIn(true);
+    } else setLoggedIn(false);
+  }, [user]);
 
   if (!loggedIn) {
     return (
