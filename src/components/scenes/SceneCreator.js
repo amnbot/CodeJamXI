@@ -13,7 +13,7 @@ export default function SceneCreator() {
   const [chars, setChars] = useState(0);
 
   const onCheckChange = (e) =>{
-    console.log(e.target)
+    //console.log(e.target)
     
     const temp = [...storyTags];
 
