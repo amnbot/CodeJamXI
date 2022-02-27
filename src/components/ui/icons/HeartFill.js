@@ -5,9 +5,9 @@ export default function HeartFill() {
     <div className="w-[5px]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="24px"
+        height="37px"
         viewBox="0 0 24 24"
-        width="24px"
+        width="37px"
         fill="#ffacca"
       >
         <path d="M0 0h24v24H0V0z" fill="none" />

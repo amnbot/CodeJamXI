@@ -7,6 +7,8 @@ import {
   where,
   updateDoc,
   increment,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
@@ -63,8 +65,14 @@ export default function Scene() {
     setChildren(cObjs);
   };
 
-  const getUserLikedScene = async () => {
-    console.log(user);
+  const getUserLikedScene = () => {
+    console.log(user.liked);
+    if (user.liked === undefined) {
+      setLiked(false);
+    } else {
+      if (user.liked.includes(scene.id)) setLiked(true);
+      console.log(liked);
+    }
   };
 
   const displayItems = (items, anc = false) => {
@@ -187,8 +195,27 @@ export default function Scene() {
     );
   };
 
-  const handleLikes = (e) => {
-    console.log(e);
+  const handleLikes = async (e) => {
+    if (!liked) {
+      await updateDoc(doc(db, "scenes", scene.id), {
+        likes: increment(1),
+      });
+
+      await updateDoc(doc(db, "users", user.id), {
+        liked: arrayUnion(scene.id),
+      });
+
+      setLiked(true);
+    } else {
+      await updateDoc(doc(db, "scenes", scene.id), {
+        likes: increment(-1),
+      });
+
+      await updateDoc(doc(db, "users", user.id), {
+        liked: arrayRemove(scene.id),
+      });
+      setLiked(false);
+    }
   };
 
   //console.log(scene.children, scene.parents.split(" "));
@@ -214,7 +241,7 @@ export default function Scene() {
       <div className="flex flex-row justify-center m-auto mt-5">
         <div className="">
           <button className="" onClick={handleLikes}>
-            <HeartBorder />
+            {liked ? <HeartFill /> : <HeartBorder />}
           </button>
         </div>
         <h1 className="mx-2 my-auto text-xl">{scene.likes}</h1>
