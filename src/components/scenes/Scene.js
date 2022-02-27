@@ -35,8 +35,11 @@ export default function Scene() {
   useEffect(() => {
     getSceneParents(scene.parents.split(" "));
     getSceneChildren();
-    getUserLikedScene();
   }, [id]);
+
+  useEffect(() => {
+    getUserLikedScene();
+  }, [liked, id]);
 
   const getSceneParents = async (pIds) => {
     let pObjs = [];
@@ -65,13 +68,15 @@ export default function Scene() {
     setChildren(cObjs);
   };
 
-  const getUserLikedScene = () => {
-    console.log(user.liked);
-    if (user.liked === undefined) {
+  const getUserLikedScene = async () => {
+    const snapshot = await getDoc(doc(db, "users", user.id));
+    const u = snapshot.data();
+    if (u.liked === undefined) {
       setLiked(false);
     } else {
-      if (user.liked.includes(scene.id)) setLiked(true);
-      console.log(liked);
+      console.log(u.liked);
+      if (u.liked.includes(scene.id)) setLiked(true);
+      else setLiked(false);
     }
   };
 
@@ -80,7 +85,10 @@ export default function Scene() {
       <div className="flex flex-row justify-start">
         <ul className="space-y-3 text-center">
           {items.map((scene, index) => (
-            <div key={scene.id}>
+            <div
+              key={scene.id}
+              className="transition-transform hover:translate-x-8"
+            >
               <li>
                 <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
                   <ListItem>
@@ -117,7 +125,7 @@ export default function Scene() {
               PREVIOUS SCENES
             </h1>
           ) : null}
-          <div className="text-right">
+          <div className="transition-transform hover:-translate-x-8">
             {parents.length > 0 ? (
               <Link
                 to={`/scene/${parents[0].id}`}
@@ -139,7 +147,7 @@ export default function Scene() {
               </Link>
             ) : null}
           </div>
-          <div className="">
+          <div className="transition-transform hover:-translate-x-8">
             {parents.length > 1 ? (
               <Link
                 to={`/scene/${parents[parents.length - 1].id}`}
@@ -167,7 +175,7 @@ export default function Scene() {
           </div>
         </div>
         <Link to="/create" state={{ parent: scene }}>
-          <div className="bg-app-button p-2 rounded-lg text-app-button-text text-center my-2">
+          <div className="transition-transform hover:scale-110 bg-app-button p-2 rounded-lg text-app-button-text text-center my-2">
             START YOUR OWN STORY
           </div>
         </Link>
@@ -187,7 +195,7 @@ export default function Scene() {
           {displayItems(children)}
         </div>
         <Link to="/branch/create" state={{ parent: scene }}>
-          <div className="bg-app-button p-2 rounded-lg text-app-button-text text-center my-10">
+          <div className="transition-transform hover:scale-110 bg-app-button p-2 rounded-lg text-app-button-text text-center my-10">
             MAKE YOUR OWN BRANCH
           </div>
         </Link>
@@ -240,7 +248,10 @@ export default function Scene() {
       </section>
       <div className="flex flex-row justify-center m-auto mt-5">
         <div className="">
-          <button className="" onClick={handleLikes}>
+          <button
+            className="transition-transform hover:scale-110"
+            onClick={handleLikes}
+          >
             {liked ? <HeartFill /> : <HeartBorder />}
           </button>
         </div>
