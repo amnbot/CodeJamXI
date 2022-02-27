@@ -1,5 +1,12 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 import SceneCreator from "./scenes/SceneCreator";
@@ -10,7 +17,7 @@ import applogo from "../applogo.png";
 
 export default function Navbar() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="inline-flex  w-screen bg-app-nav-bar text-white uppercase tracking-widest py-3">
         <nav>
           <ul className="flex inline justify-start ml-10 gap-4 md:gap-10">
@@ -48,6 +55,6 @@ export default function Navbar() {
         <Route path="/branch/create" element={<BranchCreator />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
