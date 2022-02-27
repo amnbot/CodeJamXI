@@ -17,7 +17,7 @@ export default function BranchCreator() {
           <b className="uppercase tracking-wider">{parent.title.join(" ")}</b>{" "}
           from <b>{parent.creatorName}</b>
         </h1>
-        <div className="bg-green-600 w-[75%] p-7 rounded-xl text-white">
+        <div className="bg-app-card w-[75%] p-7 rounded-xl text-white">
           <h1 className="font-light uppercase mb-3 text-xl tracking-widest">
             Previous scene
           </h1>
