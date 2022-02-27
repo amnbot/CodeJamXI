@@ -47,7 +47,6 @@ export default function Navbar() {
         <Route path="/scene/:id" element={<Scene />} />
         <Route path="/branch/create" element={<BranchCreator />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
