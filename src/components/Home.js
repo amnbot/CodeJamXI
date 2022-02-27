@@ -1,15 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Scene from "./scenes/Scene";
-import { tags } from "../constants/constants";
 import ListItem from "./ui/ListItem";
 
 export default function Home() {
-  const [storyTags, setStoryTags] = useState(tags);
+  const tags = [
+    {
+      tag: "romance",
+      value: false,
+    },
+    {
+      tag: "drama",
+      value: false,
+    },
+    {
+      tag: "mystery",
+      value: false,
+    },
+    {
+      tag: "comedy",
+      value: false,
+    },
+    {
+      tag: "horror",
+      value: false,
+    },
+    {
+      tag: "fantasy",
+      value: false,
+    },
+    {
+      tag: "adventure",
+      value: false,
+    },
+    {
+      tag: "science-fiction",
+      value: false,
+    },
+  ];
   const [sceneList, setSceneList] = useState([]);
   const [search, setSearch] = useState("");
+  const [storyTags, setStoryTags] = useState(tags);
+
+  useEffect(() => {
+    setStoryTags(tags);
+  }, []);
 
   const onCheckChange = (e) => {
     //console.log(e.target)
@@ -22,7 +59,7 @@ export default function Home() {
       }
     }
     setStoryTags(temp);
-    //console.log(storyTags);
+    console.log(storyTags);
   };
 
   const filterSearch = async () => {
@@ -48,6 +85,8 @@ export default function Home() {
         where("tags", "array-contains-any", trueTags)
       );
 
+      //console.log(trueTags);
+
       const querySnapshot2 = await getDocs(q2);
 
       querySnapshot2.forEach((doc) => {
@@ -64,7 +103,7 @@ export default function Home() {
         return true;
       }
     });
-    console.log(unique);
+    //console.log(unique);
     setSceneList(unique);
   };
 

@@ -8,9 +8,43 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { UserContext } from "../../App";
-import { tags, sceneConstructor } from "../../constants/constants";
+import { sceneConstructor } from "../../constants/constants";
 
 export default function SceneCreator({ isChild, parent }) {
+  const tags = [
+    {
+      tag: "romance",
+      value: false,
+    },
+    {
+      tag: "drama",
+      value: false,
+    },
+    {
+      tag: "mystery",
+      value: false,
+    },
+    {
+      tag: "comedy",
+      value: false,
+    },
+    {
+      tag: "horror",
+      value: false,
+    },
+    {
+      tag: "fantasy",
+      value: false,
+    },
+    {
+      tag: "adventure",
+      value: false,
+    },
+    {
+      tag: "science-fiction",
+      value: false,
+    },
+  ];
   const user = useContext(UserContext);
   // console.log(user);
   const [storyTags, setStoryTags] = useState(tags);
@@ -35,7 +69,7 @@ export default function SceneCreator({ isChild, parent }) {
       }
     }
     setStoryTags(temp);
-    //console.log(storyTags);
+    console.log(storyTags);
   };
 
   const handleTextChange = (e) => {
