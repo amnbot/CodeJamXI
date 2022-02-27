@@ -12,13 +12,13 @@ export default function Navbar() {
       <div className="inline-flex  w-screen bg-app-nav-bar text-white uppercase tracking-widest py-3">
         <nav>
           <ul className="flex inline justify-start ml-10 gap-4 md:gap-10">
-            <li>
+            <li className="transition-transform hover:scale-110">
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="transition-transform hover:scale-110">
               <Link to="/about">About</Link>
             </li>
-            <li>
+            <li className="transition-transform hover:scale-110">
               <Link to="/create">Create</Link>
             </li>
           </ul>

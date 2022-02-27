@@ -49,20 +49,18 @@ export default function Home() {
       );
 
       const querySnapshot2 = await getDocs(q2);
-      
+
       querySnapshot2.forEach((doc) => {
-
-          scenes.push({ id: doc.id, ...doc.data() });
-
+        scenes.push({ id: doc.id, ...doc.data() });
       });
     }
-    let uniqueScenesIds = []
+    let uniqueScenesIds = [];
 
-    let unique = scenes.filter(scene => {
+    let unique = scenes.filter((scene) => {
       const isDuplicate = uniqueScenesIds.includes(scene.id);
 
-      if(!isDuplicate){
-        uniqueScenesIds.push(scene.id)
+      if (!isDuplicate) {
+        uniqueScenesIds.push(scene.id);
         return true;
       }
     });
@@ -79,7 +77,10 @@ export default function Home() {
       <div className="my-2.5 text-app-button">
         <ul className="space-y-5">
           {sceneList.map((scene) => (
-            <div key={scene.id}>
+            <div
+              key={scene.id}
+              className="transition-transform hover:scale-110"
+            >
               <li>
                 <ListItem>
                   <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
