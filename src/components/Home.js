@@ -91,7 +91,7 @@ export default function Home() {
 
       <input
         onChange={handleInput}
-        placeholder="Search by name or tag..."
+        placeholder="Search by name..."
         maxLength="100"
         className="m-auto mb-3 mt-3 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
       />
