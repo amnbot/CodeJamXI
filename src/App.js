@@ -99,12 +99,12 @@ function App() {
 
   if (!loggedIn) {
     return (
-      <div className="flex justify-center items-center flex-col my-[20%]">
-        <h1 className="text-2xl font-bold font-mono">
-          Please log in to continue
+      <div className="bg-app-bg flex min-h-screen justify-center items-center flex-col">
+        <h1 className="text-2xl font-bold font-mono text-white mt-[20%]">
+          Welcome to Storyholic! Please log in to continue...
         </h1>
         <button
-          className="flex font-mono font-bold m-auto justify-center content-center bg-green-600 text-white rounded-lg px-3 w-1/3 mt-1.5"
+          className="flex font-mono font-bold m-auto justify-center content-center bg-app-button text-black rounded-lg px-3 w-1/3 mt-1.5"
           onClick={handleSignIn}
         >
           LOG IN
