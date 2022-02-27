@@ -62,20 +62,24 @@ export default function SceneCreator({ isChild, parent }) {
       return;
     }
 
-    if(text.split(" ").length < 10){
+    if (text.split(" ").length < 10) {
       alert("you must have at least 10 words!");
       return;
     }
 
     const titleWords = title.toLowerCase().trim().split(" ");
     //console.log({title: title, text:text})
+    const trueTags = storyTags.filter((tag) => {
+      if (tag.value) return tag.tag;
+    });
+    console.log(trueTags);
     const toSubmit = {
       ...sceneConstructor,
       title: titleWords,
       text,
       creatorId: user.id,
       creatorName: user.name,
-      tags: storyTags,
+      tags: trueTags,
       parents: isChild ? parent.parents + " " + parent.id : "",
     };
 
