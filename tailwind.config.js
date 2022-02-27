@@ -8,6 +8,7 @@ module.exports = {
         "app-nav-bar": "#0f1839",
         "app-button": "#ffacca",
         "app-button-text": "#592845",
+        "app-card": "#162044",
       },
     },
   },

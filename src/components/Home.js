@@ -65,14 +65,14 @@ export default function Home() {
 
   const displayScenes = () => {
     return (
-      <div className="my-2.5 text-white">
+      <div className="my-2.5 text-app-button">
         <ul className="space-y-5">
           {sceneList.map((scene) => (
             <div key={scene.id}>
               <li>
                 <ListItem>
                   <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
-                    <h1 className="uppercase text-lg tracking-widest text-center">
+                    <h1 className="uppercase text-xl tracking-widest text-center">
                       {scene.title.join(" ")}
                     </h1>
                   </Link>

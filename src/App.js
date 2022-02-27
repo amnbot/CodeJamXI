@@ -115,7 +115,7 @@ function App() {
   //console.log(user);
   return (
     <UserContext.Provider value={user}>
-      <div className="flex flex-col h-screen items-center font-[Montserrat] bg-app-bg text-app-text">
+      <div className="flex flex-col min-h-screen items-center font-[Montserrat] bg-app-bg text-app-text">
         <Navbar />
       </div>
       <footer className="text-app-text">
