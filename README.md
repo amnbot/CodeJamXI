@@ -1,6 +1,6 @@
 Welcome to the StoryHolic repository.
 
-![StoryHolic](/src/applogo.png =100x100)
+![StoryHolic](/src/applogo.png)
 
 [StoryHolic](https://storyholic.netlify.app/) is a submission in CodeJam XI by team NDL, made up of two McGill University Students:
 
