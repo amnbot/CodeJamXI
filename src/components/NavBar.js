@@ -25,7 +25,7 @@ export default function Navbar() {
         </nav>
         <div className="flex inline w-full mr-10 justify-end">
           <h1 className="font-black text-xl tracking-[-0.0em]">
-            STORY<i>HOLIC</i>
+            STORY<i className="text-app-button">HOLIC</i>
           </h1>
         </div>
       </div>
