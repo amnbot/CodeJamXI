@@ -69,13 +69,19 @@ export default function Scene() {
   };
 
   const getUserLikedScene = async () => {
+    console.log("we checkin fam");
     const snapshot = await getDoc(doc(db, "users", user.id));
     const u = snapshot.data();
+    console.log(u.liked);
     if (u.liked === undefined) {
       setLiked(false);
     } else {
-      if (u.liked.includes(scene.id)) setLiked(true);
-      else setLiked(false);
+      if (u.liked.includes(scene.id)) {
+        setLiked(true);
+      } else {
+        console.log("hamalton", scene);
+        setLiked(false);
+      }
     }
   };
 
