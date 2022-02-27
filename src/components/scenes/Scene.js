@@ -74,7 +74,6 @@ export default function Scene() {
     if (u.liked === undefined) {
       setLiked(false);
     } else {
-      console.log(u.liked);
       if (u.liked.includes(scene.id)) setLiked(true);
       else setLiked(false);
     }
@@ -230,11 +229,11 @@ export default function Scene() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <section className="text-center">
-        <h1 className="text-4xl tracking-widest my-10 uppercase font-bold">
+      <section className="flex flex-col text-center items-center justify-center">
+        <h1 className=" text-lg sm:text-3xl tracking-widest my-10 uppercase font-bold">
           {scene.title.join(" ")}
         </h1>
-        <div className="w-[100%] bg-app-card rounded-[30px] p-5 text-app-text space-y-7">
+        <div className="sm:max-w-[75%] bg-app-card rounded-[30px] p-5 text-app-text space-y-7">
           <div className="flex flex-row">
             <div className="flex flex-col justify-start m-auto">
               <h1 className="tracking-widest font-extralight text-xl">STORY</h1>
@@ -257,10 +256,30 @@ export default function Scene() {
         </div>
         <h1 className="mx-2 my-auto text-xl">{scene.likes}</h1>
       </div>
+      <div className="inline-flex my-2 w-screen justify-center">
+        <ul className="flex inline gap-3 justify-center items-center">
+          {scene.tags.map((tag) => {
+            if (tag.value === true) {
+              return (
+                <div
+                  key={tag.tag}
+                  className="flex transition-transform hover:scale-110"
+                >
+                  <li>
+                    <ListItem>
+                      <h1>{tag.tag}</h1>
+                    </ListItem>
+                  </li>
+                </div>
+              );
+            }
+          })}
+        </ul>
+      </div>
       <section className=" my-[2%] items-center justify-center">
         <div className=" my-1 gap-20  w-[100%]">
-          {displayParents()}
-          {displayChildren()}
+          <div className="my-10">{displayParents()}</div>
+          <div className="my-10">{displayChildren()}</div>
         </div>
       </section>
     </div>
