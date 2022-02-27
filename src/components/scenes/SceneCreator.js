@@ -61,7 +61,7 @@ export default function SceneCreator({ isChild, parent }) {
       alert("Scene must have a title");
       return;
     }
-    const titleWords = title.toLowerCase().split(" ");
+    const titleWords = title.toLowerCase().trim().split(" ");
     //console.log({title: title, text:text})
     const toSubmit = {
       ...sceneConstructor,

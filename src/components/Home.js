@@ -49,14 +49,25 @@ export default function Home() {
       );
 
       const querySnapshot2 = await getDocs(q2);
-
+      
       querySnapshot2.forEach((doc) => {
-        if (!scenes.includes({ id: doc.id, ...doc.data() })) {
+
           scenes.push({ id: doc.id, ...doc.data() });
-        }
+
       });
     }
-    setSceneList(scenes);
+    let uniqueScenesIds = []
+
+    let unique = scenes.filter(scene => {
+      const isDuplicate = uniqueScenesIds.includes(scene.id);
+
+      if(!isDuplicate){
+        uniqueScenesIds.push(scene.id)
+        return true;
+      }
+    });
+    console.log(unique);
+    setSceneList(unique);
   };
 
   const handleInput = (e) => {
