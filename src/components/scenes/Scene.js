@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
+import { theme } from "../../constants/constants";
 import { db } from "../../firebase-config";
 import ListItem from "../ui/ListItem";
 
@@ -98,11 +99,11 @@ export default function Scene() {
             PREVIOUS SCENES
           </h1>
           {displayItems(parents, true)}
-          <div className="bg-green-600 p-2 rounded-lg text-white text-center my-2">
-            <Link to="/create" state={{ parent: scene }}>
+          <Link to="/create" state={{ parent: scene }}>
+            <div className="bg-green-600 p-2 rounded-lg text-white text-center my-2">
               CREATE YOUR OWN STORY
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
     );
@@ -114,11 +115,11 @@ export default function Scene() {
         <div className="flex flex-col text-right">
           <h1 className="text-lg font-black tracking-widest my-2">BRANCHES</h1>
           {displayItems(children)}
-          <div className="bg-green-600 p-2 rounded-lg text-white text-center my-2">
-            <Link to="/branch/create" state={{ parent: scene }}>
+          <Link to="/branch/create" state={{ parent: scene }}>
+            <div className="bg-app-button p-2 rounded-lg text-white text-center my-2">
               MAKE YOUR OWN BRANCH
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

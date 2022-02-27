@@ -4,6 +4,7 @@ import { db } from "../firebase-config";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Scene from "./scenes/Scene";
 import { tags } from "../constants/constants";
+import ListItem from "./ui/ListItem";
 
 export default function Home() {
   const [storyTags, setStoryTags] = useState(tags);
@@ -64,14 +65,18 @@ export default function Home() {
 
   const displayScenes = () => {
     return (
-      <div className="my-2.5">
-        <ul>
+      <div className="my-2.5 text-white">
+        <ul className="space-y-5">
           {sceneList.map((scene) => (
             <div key={scene.id}>
               <li>
-                <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
-                  {scene.title.join(" ")}
-                </Link>
+                <ListItem>
+                  <Link to={`/scene/${scene.id}`} state={{ scene: scene }}>
+                    <h1 className="uppercase text-lg tracking-widest text-center">
+                      {scene.title.join(" ")}
+                    </h1>
+                  </Link>
+                </ListItem>
               </li>
             </div>
           ))}
@@ -110,7 +115,9 @@ export default function Home() {
       </div>
 
       <button
-        className="flex mb-2.5 bg-green-600 rounded-lg w-1/5 text-white justify-center"
+        className={
+          "flex my-5  uppercase p-2 bg-app-button rounded-lg w-1/5 text-app-button-text justify-center"
+        }
         onClick={filterSearch}
       >
         Search

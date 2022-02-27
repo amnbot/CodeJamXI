@@ -115,17 +115,17 @@ function App() {
   //console.log(user);
   return (
     <UserContext.Provider value={user}>
-      <div className="flex flex-col h-screen items-center font-[Montserrat]">
+      <div className="flex flex-col h-screen items-center font-[Montserrat] bg-app-bg text-app-text">
         <Navbar />
       </div>
-      <footer>
+      <footer className="text-app-text">
         <div className="fixed flex m-auto mx-10 gap-3 justify-center items-center bottom-10 text-center">
           <div>
             <h1>Logged in as: {user.name}</h1>
           </div>
 
           <button
-            className=" bg-red-600 text-white rounded-lg px-3"
+            className=" bg-red-400 text-white rounded-lg px-3"
             onClick={handleSignOut}
           >
             LOG OUT
