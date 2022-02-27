@@ -243,6 +243,7 @@ export default function Scene() {
               <i className="tracking-widest">
                 SCENE NUMBER: {parents.length + 1}
               </i>
+              <h1 className="tracking-widest font-extralight text-lg">by: {scene.creatorName}</h1>
             </div>
           </div>
           <p className="text-xl">{scene.text}</p>
