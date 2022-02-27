@@ -5,6 +5,7 @@ import About from "./About";
 import SceneCreator from "./scenes/SceneCreator";
 import BranchCreator from "./scenes/BranchCreator";
 import Scene from "./scenes/Scene";
+import Profile from "./Profile";
 
 export default function Navbar() {
   return (
@@ -20,6 +21,9 @@ export default function Navbar() {
             </li>
             <li className="transition-transform hover:scale-110">
               <Link to="/create">Create</Link>
+            </li>
+            <li className="transition-transform hover:scale-110">
+              <Link to="/profile">Profile</Link>
             </li>
           </ul>
         </nav>
@@ -38,6 +42,7 @@ export default function Navbar() {
         <Route path="/create" element={<SceneCreator />} />
         <Route path="/scene/:id" element={<Scene />} />
         <Route path="/branch/create" element={<BranchCreator />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   );
