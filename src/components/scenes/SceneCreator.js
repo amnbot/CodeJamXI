@@ -111,7 +111,7 @@ export default function SceneCreator({ isChild, parent }) {
             value={text}
             onChange={handleTextChange}
             maxLength="500"
-            className="w-[115%] sm:w-[100%] mb-2.5 px-3 py-4text-black bg-white rounded-lg border-0 shadow "
+            className="w-[115%] sm:w-[100%] mb-2.5 px-3 py-4 text-black bg-white rounded-lg border-0 shadow "
             rows="3"
             placeholder={"Your text..."}
           />
