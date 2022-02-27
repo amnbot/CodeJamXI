@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 import SceneCreator from "./scenes/SceneCreator";
@@ -30,7 +30,7 @@ export default function Navbar() {
         </nav>
         <div className="flex inline w-full mr-10 justify-end">
           <div className="w-[30px]">
-            <img src={applogo} />
+            <img src={applogo} alt="logo" />
           </div>
           <h1 className="font-black text-xl tracking-[-0.0em]">
             STORY<i className="text-app-button">HOLIC</i>
@@ -47,6 +47,7 @@ export default function Navbar() {
         <Route path="/scene/:id" element={<Scene />} />
         <Route path="/branch/create" element={<BranchCreator />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
