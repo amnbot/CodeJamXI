@@ -6,6 +6,7 @@ import SceneCreator from "./scenes/SceneCreator";
 import BranchCreator from "./scenes/BranchCreator";
 import Scene from "./scenes/Scene";
 import Profile from "./Profile";
+import applogo from "../applogo.png";
 
 export default function Navbar() {
   return (
@@ -28,6 +29,9 @@ export default function Navbar() {
           </ul>
         </nav>
         <div className="flex inline w-full mr-10 justify-end">
+          <div className="w-[30px]">
+            <img src={applogo} />
+          </div>
           <h1 className="font-black text-xl tracking-[-0.0em]">
             STORY<i className="text-app-button">HOLIC</i>
           </h1>
@@ -42,7 +46,7 @@ export default function Navbar() {
         <Route path="/create" element={<SceneCreator />} />
         <Route path="/scene/:id" element={<Scene />} />
         <Route path="/branch/create" element={<BranchCreator />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
