@@ -98,7 +98,7 @@ export default function SceneCreator({ isChild, parent }) {
         <h1 className=" text-2xl sm:text-4xl mb-5 uppercase tracking-widest font-bold">
           Write a new scene
         </h1>
-        <div className="flex flex-col space-y-6 w-[90%] sm:w-[100%] text-center justify-center items-center bg-green-600 p-10 rounded-[20px]">
+        <div className="flex flex-col space-y-6 w-[90%] sm:w-[100%] text-center justify-center items-center bg-app-card p-10 rounded-[20px]">
           <input
             value={title}
             onChange={handleTitleChange}
@@ -111,22 +111,22 @@ export default function SceneCreator({ isChild, parent }) {
             value={text}
             onChange={handleTextChange}
             maxLength="500"
-            className="w-[115%] sm:w-[100%] mb-2.5 px-3 py-4text-black bg-white rounded-lg border-0 shadow "
+            className="w-[115%] sm:w-[100%] mb-2.5 px-3 py-4 text-black bg-white rounded-lg border-0 shadow "
             rows="3"
             placeholder={"Your text..."}
           />
 
           <div className="">
-            <h1 className="mb-2.5">{chars}/500 characters</h1>
+            <h1 className="mb-2.5 text-app-button">{chars}/500 characters</h1>
           </div>
 
           <div className="text-center items-center ">
             <ul>
               {storyTags.map((tag) => (
-                <div className="inline-flex mx-3" key={tag.tag}>
+                <div className="inline-flex mx-3 text-app-button" key={tag.tag}>
                   <li>
                     <input
-                      className="text-black mx-2"
+                      className="text-app-button mx-2 accent-app-button"
                       type="checkbox"
                       onChange={onCheckChange}
                       id={tag.tag}
@@ -143,7 +143,7 @@ export default function SceneCreator({ isChild, parent }) {
         <div className="">
           <button
             onClick={submit}
-            className="bg-green-600 text-white px-10 py-2 my-10 rounded-xl"
+            className="bg-app-button text-app-button-text px-10 py-2 my-10 rounded-xl"
           >
             Submit
           </button>
