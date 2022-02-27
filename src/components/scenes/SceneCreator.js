@@ -61,6 +61,12 @@ export default function SceneCreator({ isChild, parent }) {
       alert("Scene must have a title");
       return;
     }
+
+    if(text.split(" ").length < 10){
+      alert("you must have at least 10 words!");
+      return;
+    }
+
     const titleWords = title.toLowerCase().trim().split(" ");
     //console.log({title: title, text:text})
     const toSubmit = {
