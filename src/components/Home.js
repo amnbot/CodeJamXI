@@ -93,7 +93,7 @@ export default function Home() {
         onChange={handleInput}
         placeholder="Search by name or tag..."
         maxLength="100"
-        className="m-auto mt-2.5 mb-2.5 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
+        className="m-auto mb-3 mt-3 border-black px-3 py-4 flex text-black bg-white rounded text-base border-0 shadow w-1/2"
       />
       <div className="flex justify-center text-center items-center">
         <ul>
@@ -101,7 +101,7 @@ export default function Home() {
             <div className="inline-flex mx-3" key={tag.tag}>
               <li>
                 <input
-                  className="text-black mx-2"
+                  className="text-black accent-app-button mx-2"
                   type="checkbox"
                   id={tag.tag}
                   onChange={onCheckChange}
