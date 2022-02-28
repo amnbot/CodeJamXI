@@ -117,11 +117,6 @@ function App() {
     <UserContext.Provider value={user}>
       <div className="flex flex-col min-h-screen items-center font-[Montserrat] bg-app-bg text-app-text">
         <Navbar />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9061402372289923"
-          crossorigin="anonymous"
-        ></script>
       </div>
       <footer className="text-app-text">
         <div className="fixed flex m-auto mx-10 gap-3 justify-center items-center bottom-10 text-center">
